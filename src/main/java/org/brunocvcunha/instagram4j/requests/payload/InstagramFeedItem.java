@@ -15,15 +15,12 @@
  */
 package org.brunocvcunha.instagram4j.requests.payload;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.util.List;
-import java.util.Map;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Tag Feed Results
@@ -47,10 +44,10 @@ public class InstagramFeedItem {
     public boolean has_audio;
     public double video_duration;
     public Map<String, Object> attribution;
-    public List<Object> video_versions;
-    public Map<String, Object> image_versions2;
-    public Map<String, Object> usertags;
-    public Map<String, Object> location;
+    public List<ImageMeta> video_versions;
+    public ImageVersions image_versions2;
+    public List<InstagramFeedUserTag> usertags;
+    public FeedItemLocation location;
     public float lng;
     public float lat;
     public int original_width;
@@ -58,6 +55,8 @@ public class InstagramFeedItem {
     public int view_count;
     public InstagramUser user;
 
+    public List<InstagramCarouselMediaItem> carousel_media;
+    
     public String organic_tracking_token;
     public int like_count;
     public List<String> top_likers;
@@ -67,13 +66,16 @@ public class InstagramFeedItem {
     public boolean has_more_comments;
     public long next_max_id;
     public int max_num_visible_preview_comments;
-    public List<Object> preview_comments;
+    public List<InstagramComment> preview_comments;
     public List<Object> comments;
-    public boolean comment_count;
-    public Map<String, Object> caption;
+    public int comment_count;
+    public InstagramComment caption;
 
+    public boolean can_viewer_reshare;
     public boolean caption_is_edited;
     public boolean photo_of_you;
     public boolean comments_disabled;
+    public boolean can_viewer_save;
+    public boolean has_viewer_saved;
     
 }

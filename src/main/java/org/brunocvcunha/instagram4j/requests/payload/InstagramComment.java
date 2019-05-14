@@ -37,4 +37,7 @@ public class InstagramComment {
 	private String status;
 	private int bit_flags;
 	private InstagramUser user;
+	private boolean did_report_as_spam;
+	private boolean share_enabled;
+	private long media_id;
 }

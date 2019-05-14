@@ -15,48 +15,31 @@
  */
 package org.brunocvcunha.instagram4j.requests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.brunocvcunha.instagram4j.requests.payload.InstagramSyncFeaturesPayload;
-import org.brunocvcunha.instagram4j.requests.payload.InstagramSyncFeaturesResult;
+import org.brunocvcunha.instagram4j.requests.payload.InstagramSearchUsernameResult;
 
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import lombok.SneakyThrows;
-import lombok.extern.log4j.Log4j;
 
 /**
- * Sync Features Request
+ * Get User Information Request
  * 
  * @author Bruno Candido Volpato da Cunha
  *
  */
 @AllArgsConstructor
-@Log4j
-public class InstagramSyncFeaturesRequest extends InstagramPostRequest<InstagramSyncFeaturesResult> {
+public class InstagramGetUserInfoRequest extends InstagramGetRequest<InstagramSearchUsernameResult> {
 
-    @NonNull
-    private InstagramSyncFeaturesPayload payload;
-    
+    private long userId;
+
     @Override
     public String getUrl() {
-        return "qe/sync/";
+        return "users/" + userId + "/info/";
     }
 
     @Override
     @SneakyThrows
-    public String getPayload() {
-        ObjectMapper mapper = new ObjectMapper();
-        String payloadJson = mapper.writeValueAsString(payload);
-
-        return payloadJson;
+    public InstagramSearchUsernameResult parseResult(int statusCode, String content) {
+        return parseJson(statusCode, content, InstagramSearchUsernameResult.class);
     }
-
-    @Override
-    @SneakyThrows
-    public InstagramSyncFeaturesResult parseResult(int statusCode, String content) {
-        return new InstagramSyncFeaturesResult();
-    }
-
 
 }
